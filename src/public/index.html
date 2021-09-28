@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DashIt</title>
+  <!-- Adding Manifest -->
+  <link rel="manifest" href="/manifest.json">
+   <!-- Adding Style sheet-->
+  <link rel="stylesheet" href="css/styles.css">
+ <!-- Adding Icon-->
+  <link rel="shortcut icon"  href="./images/icons/icon-192x192.png">
+   <!-- Adding iOS Icon-->
+  <link rel="apple-touch-icon" href="./images/icons/icon-192x192.png"> 
+  <meta name="apple-mobile-web-app-capable" content="yes">
+
+
+  <meta name="theme-color" content="#292D3E">
+<!-- This should prevent zoom on mobile -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="HandheldFriendly" content="true" />
+  <!-- Set ios header colour -->
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <!-- Splash Screens  -->
+
+  <link href="./images/splash/iphone5_splash.png" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+  <link href="./images/splash/iphone6_splash.png" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+  <link href="./images/splash/iphoneplus_splash.png" media="(device-width: 621px) and (device-height: 1104px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image" />
+  <link href="./images/splash/iphonex_splash.png" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image" />
+  <link href="./images/splash/iphonexr_splash.png" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+  <link href="./images/splash/iphonexsmax_splash.png" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3)" rel="apple-touch-startup-image" />
+  <link href="./images/splash/ipad_splash.png" media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+  <link href="./images/splash/ipadpro1_splash.png" media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+  <link href="./images/splash/ipadpro3_splash.png" media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+  <link href="./images/splash/ipadpro2_splash.png" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image" />
+</head>
+<body id='body' ontouchstart=''>
+  <div id='offline'><span>Reconnecting</span><button class='loading-spinner'></button></div>
+  <div class='page-header'>
+      <img class= 'main-logo' id='main-logo' src='images/mylogo.png'/>
+      <h1>DASH.it</h1>
+  </div>
+  <div class='flex-container'>
+    <div class='widget'>
+      <div class="date">
+        <h1 id="time"></h1>
+        <h2 id="day"></h2>
+        <h3 id="date"></h3>
+      </div>
+    </div>
+
+    <div class='widget'>
+      <div class='widget-header'>
+        <h3>Current Weather</h3>
+        <button id='weather-refresh' class='refresh'>Loading</button>
+      </div>
+      <div id='current-weather'></div>
+      <span class='powered-by'>Powered by: <a href="https://openweathermap.org/" target="_blank">openweathermap.org</a></span>
+    </div>
+
+    <div class='widget'>
+      <div class='widget-header'>
+        <h3>Weather Forecast</h3>
+        <button id='forecast-refresh' class='refresh'>Loading</button>
+      </div>
+      <div id="forecast">
+      </div>
+      <span class='powered-by'>Powered by: <a href="https://openweathermap.org/" target="_blank">openweathermap.org</a></span>
+    </div>
+
+    <div class='widget'>
+      <div class='widget-header'>
+        <h3>TFL Service</h3>
+        <button id='tfl-status-refresh' class='refresh'>Loading</button>
+      </div>
+      <div class='tfl-status'>
+        <div class='status-row' style="border-bottom: 10px solid #b26300;">
+          <div class='line-title' ><span>Bakerloo</span></div>
+          <div class='line-status' ><span id='bakerloo'></span></div>
+        </div>
+        <div class='status-row' style="border-bottom: 10px solid  #007d32;">
+          <div class='line-title' ><span>District</span></div>
+          <div class='line-status' ><span id='district'></span></div>
+        </div>
+        <div class='status-row' style="border-bottom: 10px solid  #f4a9be;">
+          <div class='line-title' ><span>Hammersmith & City</span></div>
+          <div class='line-status' ><span id='hammersmith-city'></span></div>
+        </div>
+        <div class='status-row' style="border-bottom: 10px solid  #ffd329;">
+          <div class='line-title' ><span>Circle</span></div>
+          <div class='line-status' ><span id='circle'></span></div>
+        </div>
+        <div class='status-row' style="border-bottom: 10px solid  #a1a5a7;">
+          <div class='line-title' ><span>Jubilee</span></div>
+          <div class='line-status' ><span id='jubilee'></span></div>
+        </div>
+        <div class='status-row' style="border-bottom: 10px solid  #dc251f;">
+          <div class='line-title' ><span>Central</span></div>
+          <div class='line-status' ><span id='central'></span></div>
+        </div>
+        <div class='status-row' style="border-bottom: 10px solid  #000;">
+          <div class='line-title' ><span>Northern</span></div>
+          <div class='line-status'><span id='northern'></span></div>
+        </div>
+        <div class='status-row' style="border-bottom: 10px solid  #9b0058;">
+          <div class='line-title' ><span>Metropolitan</span></div>
+          <div class='line-status'><span id='metropolitan'></span></div>
+        </div>
+        <div class='status-row' style="border-bottom: 10px solid  #0019a8;">
+          <div class='line-title' ><span>Piccadilly</span></div>
+          <div class='line-status'><span id='piccadilly'></span></div>
+        </div>
+        <div class='status-row' style="border-bottom: 10px solid  #0097d8;">
+          <div class='line-title' ><span>Victoria</span></div>
+          <div class='line-status'><span id='victoria'></span></div>
+        </div>
+        <div class='status-row' style="border-bottom: 10px solid  #93ceba;">
+          <div class='line-title' ><span>Waterloo & City</span></div>
+          <div class='line-status'><span id='waterloo-city'></span></div>
+        </div>
+      </div>
+      <span class='powered-by'>Powered by: <a href="https://tfl.gov.uk/" target="_blank">TFL</a></span>
+    </div>
+
+    <div class='widget'>
+      <div class='widget-header'>
+        <h3>TFL Departures</h3>
+        <button id='tfl-departures-refresh' class='refresh'>Loading</button>
+      </div>
+      <select id="tfl-lines" value='central'></select>
+      <select id="tfl-stations"></select>
+      <div id='departures'>
+      </div>
+      <span class='powered-by'>Powered by: <a href="https://tfl.gov.uk/" target="_blank">TFL</a></span>
+    </div>
+    <div class='widget'>
+      <div class='widget-header'>
+        <h3>News</h3>
+        <button id='news-refresh' class='refresh'>Loading</button>
+      </div>
+      <select id="news-sources"></select>
+      <div id="news">
+      </div>
+      <span class='powered-by'>Powered by: <a href="https://newsapi.org/" target="_blank">newsapi.org</a></span>
+    </div>
+  </div>
+  </div>
+  <script src="js/script.js"></script>
+</body>
+</html>
